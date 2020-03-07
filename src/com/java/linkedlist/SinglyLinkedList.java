@@ -21,6 +21,8 @@ public class SinglyLinkedList {
 			node.setNext(head);
 		}
 		head = node;
+		System.out.println("New Node has been inserted at the beginning and now the list is: ");
+		printLinkedList();
 	}
 
 	// to insert the new node at the end
@@ -35,12 +37,14 @@ public class SinglyLinkedList {
 			}
 			currentNode.setNext(node);
 		}
+		System.out.println("New Node has been inserted at the end and now the list is: ");
+		printLinkedList();
 	}
 
 	// to insert a new node a particular index given
 	public void insertAtIndex(int index, int data) {
 		ListNode node = new ListNode(data);
-		int pos = 0;
+		int pos = 1;
 		ListNode currentNode = head;
 		while(currentNode != null) {
 			
@@ -52,6 +56,8 @@ public class SinglyLinkedList {
 			currentNode = currentNode.getNext();
 			pos ++;
 		}
+		System.out.println("New Node has been inserted at the given index and now the list is: ");
+		printLinkedList();
 	}
 
 	// to print the values of Linked list
@@ -79,14 +85,18 @@ public class SinglyLinkedList {
 			ListNode tempNode = head.getNext();
 			head = tempNode;
 		}
-		System.out.println("First Node has been deleted successfully");
+		System.out.println("First Node has been deleted successfully and now the list is: ");
+		printLinkedList();
 	}
 
 	// to delete the node from end
 	public void deleteFromEnd() {
 		if(head == null) {
 			System.out.println("Sorry! Nothing to delete in the Linked List");
-		} else {
+		} else if(getListLength() == 1) {
+			deleteFromBeginning();
+		}
+		else {
 			ListNode currentNode = head;
 			ListNode previousNode = null;
 			while(currentNode.getNext() != null) {
@@ -95,7 +105,8 @@ public class SinglyLinkedList {
 			}
 			previousNode.setNext(null);
 		}
-		System.out.println("Last Node has been deleted succussfully");
+		System.out.println("Last Node has been deleted succussfully and now the list is: ");
+		printLinkedList();
 	}
 
 	// to delete the node for the given index
@@ -112,7 +123,8 @@ public class SinglyLinkedList {
 			currentNode = currentNode.getNext();
 			pos ++;
 		}
-		System.out.println("Node for index = " + index + " has been deleted succussfully");
+		System.out.println("Node for index = " + index + " has been deleted succussfully and now the list is: ");
+		printLinkedList();
 	}
 
 	// to delete the node for the first matched occurrence of data
@@ -137,10 +149,42 @@ public class SinglyLinkedList {
 				currentNode = currentNode.getNext();
 			}
 			if(hasMatchFound) {
-				System.out.println("Node with data = " + data + " has been deleted successfully.");
+				System.out.println("Node with data = " + data + " has been deleted successfully and now the list is: ");
+				printLinkedList();
 			} else {
 				System.out.println("Sorry! Given data is not present in the list");
 			}
+		}
+	}
+
+	// to find the position of the given element in the list
+	public void getPosition(int data) {
+		if(head == null) {
+			System.out.println("List is empty.. no element is present to find");
+		} else {
+			int pos = 0;
+			boolean hasElementFound = false;
+			ListNode currentNode = head;
+			while(currentNode != null) {
+				if(currentNode.getData() == data) {
+					hasElementFound = true;
+					break;
+				}
+				pos ++;
+				currentNode = currentNode.getNext();
+			}
+			System.out.println(hasElementFound ? "Given Element: " + data + " is present at position: " + pos : "Sorry! Given element is not present in the list");
+		}
+		
+	}
+
+	// to clear or remove all the elements from the list
+	public void clearList() {
+		if(head == null) {
+			System.out.println("There is nothing to clear in the list as list is already empty");
+		} else {
+			head = null;
+			System.out.println("List has been cleared out successfully..");
 		}
 	}
 	

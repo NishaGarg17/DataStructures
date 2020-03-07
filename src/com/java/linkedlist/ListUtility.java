@@ -40,6 +40,7 @@ public class ListUtility {
 		System.out.println("Find");
 		System.out.println("Count");
 		System.out.println("Print");
+		System.out.println("Clear");
 		System.out.println("enter the operation name which you want to perform");
 		String operation = sc.next().toLowerCase();
 		
@@ -62,8 +63,14 @@ public class ListUtility {
 				System.out.println("Linked List is: ");
 				slist.printLinkedList();
 				break;
+			case "find":
+				System.out.println("Enter the element to find position in the list: ");
+				data = sc.nextInt();
+				slist.getPosition(data);
+				break;
 			case "count":
 				System.out.println("Total number of elements in the Linked list are: " + slist.getListLength());
+				break;
 			case "delete":
 				System.out.println("Enter 'index' to delete node using index and 'data' to delete node as per the data");
 				String type = sc.next().toLowerCase();
@@ -89,13 +96,16 @@ public class ListUtility {
 						System.out.println("Invalid Input");
 				}
 				break;
-				
+			case "clear":
+				slist.clearList();
+				break;
 			default: 
 				System.out.println("Wrong Operation name has been entered");
 				
 		} 
 		
  	}
+
 		
 }
 
