@@ -41,6 +41,7 @@ public class ListUtility {
 		System.out.println("Count");
 		System.out.println("Print");
 		System.out.println("Clear");
+		System.out.println("Reverse");
 		System.out.println("enter the operation name which you want to perform");
 		String operation = sc.next().toLowerCase();
 		
@@ -98,6 +99,9 @@ public class ListUtility {
 				break;
 			case "clear":
 				slist.clearList();
+				break;
+			case "reverse":
+				slist.reverse();
 				break;
 			default: 
 				System.out.println("Wrong Operation name has been entered");

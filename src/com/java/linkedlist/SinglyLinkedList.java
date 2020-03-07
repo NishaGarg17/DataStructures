@@ -187,5 +187,25 @@ public class SinglyLinkedList {
 			System.out.println("List has been cleared out successfully..");
 		}
 	}
+
+	// code to reverse a linked list
+	public void reverse() {
+		ListNode prev = null, next = null;
+		ListNode currentNode = head;
+		
+		while(currentNode != null) {
+			next = currentNode.getNext();
+			currentNode.setNext(prev);
+			prev = currentNode;
+			currentNode = next;
+		}
+		head = prev;
+		if(head == null) {
+			System.out.println("Linked list is empty, nothing to reverse");
+		} else {
+			System.out.println("Linked List after reversal is: ");
+			printLinkedList();
+		}
+	}
 	
 }
