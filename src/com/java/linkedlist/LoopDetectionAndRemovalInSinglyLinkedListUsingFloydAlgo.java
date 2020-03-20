@@ -46,12 +46,38 @@ public class LoopDetectionAndRemovalInSinglyLinkedListUsingFloydAlgo {
 
 	// to remove the loop from Singly Linked List
 	private static void removeLoop(ListNode fastPtr, ListNode head) {
-		ListNode slowPtr = head;
-		while(slowPtr.getNext() != fastPtr.getNext()) {
-			slowPtr = slowPtr.getNext();
-			fastPtr = fastPtr.getNext();
+		ListNode ptr1 = fastPtr, ptr2 = fastPtr;
+		int k = 1;
+		
+		// count the number of nodes present in the loop
+		while(ptr1.getNext() != ptr2) {
+			ptr1 = ptr1.getNext();
+			k++;
 		}
-		fastPtr.setNext(null);
+		
+		// Set ptr1 and ptr2 to head
+		ptr1 = head;
+		ptr2 = head;
+		
+		// Now move the ptr2 to k number of nodes from head
+		for(int i = 0; i < k; i ++) {
+			ptr2 = ptr2.getNext();
+		}
+		
+		// Move both pointers one by one and they will meet at loop node
+		while(ptr1 != ptr2) {
+			ptr1 = ptr1.getNext();
+			ptr2 = ptr2.getNext();
+		}
+		
+		// get pointer to the last node
+		
+		while(ptr2.getNext() != ptr1) {
+			ptr2 = ptr2.getNext();
+		}
+		
+		// Set the last node pointer to null to fix the loop
+		ptr2.setNext(null);
 	}
 
 }
